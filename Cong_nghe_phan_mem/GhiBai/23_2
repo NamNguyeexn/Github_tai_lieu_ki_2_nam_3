@@ -1,0 +1,90 @@
+Requirement
+    Concept exploration
+        Brain storming : là phương pháp bàn tròn, 
+các thành viên luân phiên thảo luận theo vòng tròn, 
+các thành viên đưa ra các key, vòng tròn dừng lại khi 
+quá 3 vòng mà không còn ai đưa ra được key nữa
+        VD: Hệ thống đặt phòng ks
+        - phòng
+        - phòng đơn
+        - phòng đôi
+        - phòng kép
+        ....
+        Glossary list : tổ chức thành bảng có 4 cột
+        Thứ tự | Khái niệm | tên TA | giải nghĩa
+        -----------------------------------------
+        Nhóm các khái niệm liên quan đến vật
+        -----------------------------------------
+        1      | Phòng đơn | single room | phòng có 1 giường đơn dành cho 1 người lớn
+        2      | phòng dôi | double room | phòng có 1 giường đôi dành cho 2 người lớn
+        3      | phòng kép | twin room   | phòng có 2 giường đơn dành cho 2 người lớn
+        -----------------------------------------
+        Nhóm các khái niệm liên quan đến người
+        4      | lễ tân    | .....       |.....
+        5      | ......    | .....       |.....
+        -----------------------------------------
+        Nhóm các khái niệm liên quan đến hành động
+        6      Nhận phòng
+        7      Đặt phòng
+        8      Hủy phòng
+        9      Trả phòng
+        -----------------------------------------
+        Nhóm các từ liên quan đến chính sách, luật
+        10     điều kiện hủy phòng
+        11     phạt làm hỏng đồ trong khách sạn
+        12     ..........
+    Business model
+        By NL (Normal Language) : mô tả hệ thống bằng ngôn ngữ tự nhiên 
+            Mục đích và phạm vi của hệ thống ?
+            Ai có quyền truy cập vào hệ thống ? vai trò chức năng gì ?
+            Các chức năng hoạt động như thế nào ?
+            Các thông tin cần quản lý / xử lý là gì ?
+            Quan hệ giữa các đối tượng thông tin ?
+            VD : 
+            1.hệ thống cho phép đặt phòng của 1 khách sạn
+            - Kiểu ứng dụng : Máy bàn ( có thể dùng trên nhiều máy, chung CSDL )
+            - Phạm vi : phục vụ nội bộ cho 1 khách sạn 
+                        chỉ cho phép nhân viên ks sử dụng ( nhân viên quản lý, lễ tân, bán hàng, quản trị )
+                        chỉ quản lý thông tin khách sạn, phòng, đặt phòng, thanh toán
+                        không quản lý nhân sự, cơ sở vật chất
+            2.Chỉ có 4 bạn nhân viên sau thuộc ks được sử dụng
+                Nhân viên quản lý : quản lý thông tin khách sạn gồm các thao tác thêm sửa xóa tìm xem
+                                    quản lý thông tin về phòng gồm các thao tác thêm sửa xóa tìm xem
+                                    xem các báo cáo thống kê như 
+                                        thống kê doanh thu theo thời gian, 
+                                        thống kê doanh thu theo phòng, 
+                                        thống kê doanh thu theo khách hàng
+                Nhân viên quản trị : quản lý thông tin người dùng gồm các thao tác thêm sửa xóa tìm xem (theo yêu cầu của nhân viên tương ứng )
+                Nhân viên bán hàng : tìm và đặt phòng cho khách hàng qua điện thoại (theo yêu cầu KH)
+                                     hủy đặt phòng cho khách hàng qua điện thoại (theo yêu cầu của KH)
+                Nhân viên lễ tân : tìm và đặt phòng cho khách hàng tại quầy (theo yêu cầu KH)
+                                   hủy đặt phòng cho khách hàng tại quầy (theo yêu cầu KH)
+                                   cho khách hàng nhận phòng (theo yêu cầu KH)
+                                   cho khách hàng trả phòng và thanh toán (theo yêu cầu KH)
+                (mô tả chi tiết 22 chức năng)
+            3.Các chức năng hoạt động như thế nào 
+                Chức năng đặt phòng qua điện thoại
+                    + KH gọi đến KS -> lễ tân nhấc máy
+                    + KH yêu cầu đặt phòng -> lễ tân chuyển máy cho nhân viên bán hàng
+                    + NV bán hàng hỏi KH ngày checkin checkout -> KH báo với NV ngày checkin checkout 
+                    + NV bán hàng nhập ngày checkin checkout -> hệ thống hiện danh sách các phòng chống -> thông tin phòng gồm : tên, kiểu, giá, mô tả
+                    + NV bán hàng báo với KH các loại phòng còn trống, yêu cầu KH chọn phòng -> KH chọn 1 / 1 số phòng
+                    + NV bán hàng chọn các phòng theo yêu cầu của KH -> hệ thống chuyển sang giao diện nhập thông tin KH
+                    + NV bán hàng hỏi thông tin KH gồm tên, sdt, địa chỉ, mail -> KH cung cấp cho NV bán hàng
+                    + NV bán hàng nhập tên, sdt vào và tìm kiếm -> hệ thống hiện danh sách các KH có tên hoặc sdt trong danh sách tên, sdt, địa chỉ, mail
+                    + Nếu KH không có trong danh sách -> NV bán hàng chọn thêm mới -> nhập vào và chuyển sang phần xác nhận
+                    + Nếu KH đã có trong danh sách -> NV chọn KH -> hệ thống chuyển sang phần xác nhận
+                    + NV bán hàng xác nhận các thông tin gồm thông tin về KH, phòng, ngày checkin checkout và yêu cầu KH xác nhận -> KH xác nhận và đồng ý đặt phòng
+                    + NV bán hàng click xác nhận -> hệ thống báo thành công
+                    + NV bán hàng báo vơi với KH đã đặt phòng thành công 
+                Yêu cầu mô tả chi tiết : các thứ tự hành động phải đầy đủ
+                                         các thông tin hiện ra phải đầy đủ
+            4.Các thông tin cần xử lý, quản lý
+                Phòng : tên, kiểu, giá, mô tả(sea view, garden view, ...)
+                KH : tên, sdt, địa chỉ, mail, ghi chú(nếu cần)
+                KS : ..
+                Hóa đơn : ..
+            5.Quan hệ giữa các đối tượng là như thế nào 
+                Một phòng có thể được đặt bởi nhiều KH ở nhiều thời điểm khác nhau
+                Một KH có thể đặt nhiều phòng ở nhiều thời điểm khác nhau hoặc cùng 1 thời điểm  
+        By UML

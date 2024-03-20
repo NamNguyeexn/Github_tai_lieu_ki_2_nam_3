@@ -1,0 +1,26 @@
++ UC chi tiết :
+    - Sai tên (là hành động chính của actor chính(động từ))
+    - Thiếu acotr
+    - Sai qhe
+    Thiếu usecase con,
+
++ Scenario :
+    - Thiếu actor
+    - Sai format
+    - Thông tin không chi tiết 
+    - Thiếu diễn biến ngược
+    - Thiếu logic
++ Lớp thực thể :
+    - Thiếu lớp liên quan
+    - Sai lớp/ số lượng (1 dòng là 1 lớp thưc thể)
+    - Sai qhe
+    - Sai cơ bản
++ Biểu đồ lớp :
+    - Thiếu hàm xử lý 
+    - Thiếu lớp Giao diện, hàm xử lý ngoại lệ
+    - Thiếu qly giữa các thực thể 
++ Biểu đồ tuần tự :
+    - Thiếu actor
+    - Sai kiểu lớp
+    - Sai thứ tự/chủ thể hành động
+    ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,14 @@
+ACCEPTANCE TESTING là một kiểm thử nhằm xác định hệ thống phần mềm có đạt yêu cầu kỹ thuật hay không bằng việc kiểm tra các hành vi của hệ thống qua dữ liệu thực tế
+ALPHA RELEASE là một phiên bản của sản phẩm cái mà ban đầu đã được QA thông qua nhưng không có sẵn tài liệu hoặc hỗ trợ
+AMBIGUITY là sự mơ hồ trong thông tin 
+ANALYSIS WORKFLOW là quy trình xem xét và cải thiện. Nó có tác dụng đánh giá xem mỗi nhiệm vụ hoàn thành như thế nào và sau đó tìm cách cải thiện nó
+APPLICATION DOMAIN là miền ứng dụng, là cơ chế được sử dụng trong cơ sở hạ tầng ngôn ngữ chung để cách ly các ứng dụng phần mềm đã thực thi với nhau
+ARCHITECHTURAL DESIGN là quá trình xác định một tập ohwn các thành phần phần cứng và phần mềm, thiết lập khuôn cho sự phát triển của một hệ thống
+BETA RELEASE là bản phát hành được thực hiện khi tính năng sản phẩm hoàn tất và tất cả quá trình phát triển được thực hiện nhưng có thể chứa 1 số lỗi => phát hành cho những người có thể báo lỗi
+BUSINESS CASE  mô hình kinh doanh mô tả cách tổ chức tạo ra và cung cấp giá trị cho khách hàng
+CONCEPT EXPLORATION là điều tra sơ bộ về nhu cầu khách hàng
+CORE WORKFLOW  gồm 5 quy trình cốt lõi của quy trình hợp nhất gồm quy trình công việc, phân tích quy trình làm việc, thiết kế quy trình làm việc và kiểm tra quy trình làm việc
+DEFINED LEVEL là mức xác định, các khía cạnh quản lý và kỹ thuật được xác định rõ ràng và liên tục
+DESIGN WORKFLOW là khâu tinh chỉnh thành phần của quy trình phân tích cho đến khi tài liệu ở dạng có thể thực hiện được bởi các lập trình viên
+DETAILED DESIGN là thiết kế chi tiết, có được khi nhóm hoàn thiện việc phân tách modul
+E

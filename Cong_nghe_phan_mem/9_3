@@ -1,0 +1,110 @@
+Analysis
+    Viết kịch bản (Scenario) : (sự tương tác chi tiết giữa các actor)
+    Scenario                    |       Sửa thông tin phòng
+    ----------------------------------------------------------------
+    Actor                       |   Nhân viên quản lý (manager)
+    ----------------------------------------------------------------
+    Pre - condition             |   Nhân viên quản lý đã có tài khoản kiểu manager
+    ----------------------------------------------------------------
+    Post - condition            |   Thông tin phòng đã được cập nhật
+    ----------------------------------------------------------------
+    Main event                  |1  Nhân viên quản lý A nhập usename = manager, password = abc123 và click
+                                |đăng nhập, Nhân viên A muốn sửa giá phòng 305
+                                |2  Hệ thống hiện giao diện chính của nhân viên quản lý có các lựa chọn :
+                                |   - Quản lý thông tin khách sạn
+                                |   - Quản lý thông tin phòng
+                                |   - Xem báo cáo thống kê
+                                |3  Nhân viên chọn chức năng quản lý thông tin phòng
+                                |4  Hệ thống hiện giao diện quản lý thông tin phòng có các lựa chọn :
+                                |   - Thêm thông tin phòng
+                                |   - Sửa thông tin phòng
+                                |   - Xóa thông tin phòng
+                                |5  Nhân viên chọn sửa thông tin phòng
+                                |6  Hệ thống hiện giao diện tìm phòng để sửa và các thông tin :
+                                |   - Ô nhập tên phòng
+                                |   - Nút tìm
+                                |7  Nhân viên nhập tên = 305, click tìm
+                                |8  Hệ thống hiện giao diện kết quản tìm kiếm 
+                                    <<ảnh bảng 9.3.1>>
+                                |9 Nhân viên chọn vào dòng số 1 (phòng 305)
+                                |10 Hệ thống hiện giao diện sửa thông tin phòng có các thông tin :
+                                |   id = 7 (khongo sửa được)
+                                |   Name = 305
+                                |   Type = single
+                                |   price = 500
+                                |   des = garden view
+                                |   nút cập nhật , khởi tạo lại
+                                |11  Nhân viên sửa price = 600, click cập nhật 
+                                |12  Hệ thống thông báo thnahf công
+                                |13  Nhân viên click ok của thông báo
+                                |14  Hệ thống quay về giao diện chính của Nhân viên quản lý (Bước 2)
+    trong kịch bản có nhiều màn diễn (14 màn), mỗi màn diễn chỉ mô tả một hành động của 1 actor, nếu 1 màn có 2 bước của 2 chủ thể khác 
+nhau, ta phải tách thành 2 màn
+    Nếu có 2 bước liên tiếp cùng mô tả 1 hành động của 1 nhân vật, nên ghép lại thành 1 màn diễn 
+    (VD: 7 NV nhập tên phòng, 8 NV click tìm => gom lại thành 1 màn 7)
+    Mẹo : Có thể thấy được màn lẻ là của actor chính, màn chẵn là hành động của người phụ, hoặc là hệ thống
+    Nếu không đúng với luật => có thể bị thiếu(hoặc thừa)
+    Các chức năng cần viết cụ thể(không tới mức hiện link, combo box để lựa chọn nhưng phải cụ thể như ví dụ)
+    Các thông tin trong kịch bản phải logic và chi tiết với nhau
+    ------------------------------------------------------------------------------------------
+    Exception                   |7     Nhân viên nhập tên 503 click tìm 
+    ------------------------------------------------------------------------------------------
+                                |7.1   Hệ thống báo không có phòng 503
+                                |7.2   Nhân viên click ok của thông báo
+                                |7.3   Hệ thống quay về giao diện tìm phòng (Bước 6)
+    Chỉ cần tạo ngoại lệ chính, không cần tạo các ngoại lệ phụ như khách hàng nhập sai thông tin
+    Entity class diagram 
+        - Class diagram
+        ---------------------
+        |Tên lớp            |
+        ---------------------
+        |Thuộc tính         |
+        ---------------------
+        |Hàm/ Phương thức   |
+        ---------------------
+        VD ảnh 9.3.2
+        "+/-/#" + tên thuộc tính : kiểu thuộc tính
+        "+/-/#" + tên hàm (tên tham số, tên tham số, ...) : kiểu trả về 
+
+            + Kế thừa 
+            VD ảnh 9.3.3
+            + Thành phần (component) :  tp lỏng (aggergatoin) : là mũi tên hình thoi rỗng, thành phần lỏng có thể vẫn tồn tại nếu hủy bỏ đối tượng của nó
+                                        VD : |Car| <_>----- |Wheel| : lốp xe có thể tháo được
+                                        tp chặt (composition) : là mũi tên hình thoi đặc, thành phần chặt không thể tồn tại nếu hủy bỏ đối tượng của nó
+                                        VD : |Building| <=>------- |classroom| : phòng học là 1 phần của tòa nhà nhưng không tách ra được khỏi tòa nhà
+            + Liên kết (association) : A-B : n-n
+                                       A-C : 1-n
+                                       B-C : 1-n
+                                       A và B chỉ xác định duy nhất 1 C
+                        VD ảnh 9.3.4
+            + Kỹ thuật trích danh từ 
+                B1 : Mô tả modul/hệ thống trong 1 đoạn văn (có thể thay thế bằng viết tất cả kịch bản chuẩn + ngoại lệ của mudul tương ứng)
+                B2 : Trích tất cả Danh từ trong bước 1 
+                B3 : Đánh giá các danh từ   
+                        + Loại trừu tượng, chung chung, ngoài phạm vi
+                        + Làm thuộc tính
+                        + Làm lớp theo thực thi (đề xuấ xuất kiows)  
+                B4 : Xét quan hệ số lượng giưax các lớp :
+                        n - 1: gộp lại, giữ tài nguyên
+                        1 - n: giữ nguyên
+                        n - n: tách thành nhiều quan hệ 1 - n
+                B5 : Bổ sung quan hệ đối tượng :
+                        Kế thừa
+                        Thành phần  
+        VD : Đặt phòng :
+            - Nhân viên             |
+            - Nhân viên bán hàng    | user : username, password, sell name, note
+            - Nhân viên lễ tân      |
+            - Khách hàng         |Client : name, address, email, telephone number, note
+            - Điện thoại        | -> out of code
+            - Quầy              | -> out of code
+            - Khách sạn         | Khách sạn : name, address, des
+            - phòng                | room : name, type, price, des
+            - Checkin/ checkout     | -> Thuộc tính
+            - Hệ thống              | -> đề xuất triwr thành thực thể
+            - Giao diện             |
+            - Thông tin đặt phòng   | booking: checkin/checkout?
+            hình vẽ minh họa là hình 9.3.5
+            nếu 2 thực thể có mqh n-n với nhau, ta tách thành nhiều quan hệ 1 - n bằng cách : 
+                nhìn quanh A và B xem A và B có liên kết với thực thể C hoặc D nào bằng mqh 1- n không, nếu có, hủy mqh n-n của AB và xét mqh của C với B hoặc 
+                A với D xem có phải mqh n-n không, nếu có, xét lại

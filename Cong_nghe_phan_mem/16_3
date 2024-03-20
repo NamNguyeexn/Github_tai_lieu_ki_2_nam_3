@@ -1,0 +1,95 @@
+Analysis
+    -full class diagram
+        input : các kịch bản chuẩn + ngoại lệ
+    Lặp lại các bước sau đến khi hết các giao diện
+        B1  Mỗi GD chính -> 1 lớp biên
+            - tiền tố để nhận dữ liệu -> in_tên
+            - tiền tố để hiện dữ liệu ->out_tên
+            - tiền tố để điều khiển dữ liệu -> sub_tên
+            - tiền tố kết hợp các loại trên
+        B2  Mỗi hoạt động nghiệp vụ vào ra dữ liệu 
+            -> 1 hàm/phương thức xử lý
+                tên
+                Tham số vào 
+                tham số ra
+                lớp chủ thể:
+                    1 cho lớp thực thể ở out put
+                    2 cho lớp thực thể ở input(chỉ có 1)
+                    3 cho lớp thực thể nào chứa được các lớp thực thể ở input
+        VD booking đặt phòng 
+            Bảng 16.3.1
+        + scenareo ver2
+        1. KH gọi điện cho nhân viên bán hàng yêu cầu đặt phòng
+        2. NV đăng nhập trên GD LoginView
+        3. LoginView gọi lớp User
+        4. Lớp User thực hiện hàm checkLogin()
+        5. Lớp User trả kết quả cho LoginView (k có login fail)
+        6. LoginView gọi GD SellerHomeView
+        7. SellerHomeView hiển thị cho NV
+        8. NV chọn chức năng đặt phòng
+        9. SellerHomeView gọi GD SearchHomeView
+        10. SearchHomeView hiển thị cho nhân viên
+        11. NV hỏi khách hàng checkin checkout
+        12. KH trả lời ngày checkin/checkout mong muốn
+        13. NV nhập checkin/checkout và tìm kiếm trên SearchRoomView
+        14. SearchHomeView gọi lớp Room
+        15. Lớp Room thực hiện hàm searchFreeRoom()
+        16. Lớp Room trả kết quả lại cho SearchRoomView
+        17. SearchRoomView hiện kết quả cho nhân viên
+        18. NV báo kết quả cho KH và yêu cầu KH chọn 
+        19. KH chọn 1 số phòng 
+        20. NV chọn các phòng tương ứng trên SearchRoomView
+        21. SearchRoomView gọi SearchClientView
+        22. SearchClientView hiển thị cho NV 
+        23. NV hỏi khách hàng thông tin cá nhân
+        24. KH cung cấp thông tin cho nhân viên
+        25. NV nhập tên, phone tìm trên SearchClientView
+        26. SearchClientView gọi lớp Client
+        27. Lớp Client thực hiện hàm searchByName()
+        28. Lớp Client trả kết quả về cho GD SearchClientView
+        29. SearchClientView hiện kết quả cho NV
+        30. NV chọn đúng thông tin KH trong thông tin kết quả
+        31. SearchClientView gọi confirmView
+        32. ConfirmView hiển thị cho NV
+        33. NV nhắc lại thông tin đặt phòng cho KH và yêu cầu xác nhận
+        34. KH xác nhận đặt phòng với NV
+        35. NV chọn xác nhận trên ConfirmView
+        36. ConfirmView gọi Booking
+        37. Booking thực hiện hàm addBooking()
+        38. Lớp Booking trả kết quả về cho ConfirmView
+        39. ConfirmView hiện thông báo thành công
+        40. NV click ok
+        41. ConfirmView gọi lại SellerHomeView
+        42. SellerHomeView hiển thị cho NV 
+        43. NV báo KH đặt phòng thành công
+    -sequence diagram
+        Bảng 16.3.2
+        ////////////////////////////////////////////////////////////////////////////////
+Design
+    Entity class
+        input : Biểu đồ lớp thực thể pha phân tích
+        B1 Hoàn thiện các lớp
+            Chuẩn hóa tên lớp/thuộc tính
+            Bổ sung thuộc tính id cho các lớp không kế thừa từ lớp khác
+            Bổ sung kiểu của thuộc tính
+        B2 Chuyển quan hệ association -> aggregation
+                                         composition
+            Nguyên tắc : bảng 16.3.4
+        B3 Bổ sung thuộc tính đối tượng cho các quan hệ thành phần : aggregation hoặc composition phải đầy đủ 
+            Nguyên tắc : bảng 16.3.5
+        B4 Bổ sung hàm khởi tạo get set cho các lớp
+    DB Design
+        input : biểu đồ lớp thực thể pha thiết kế
+        B1 Cứ 1 lớp thực thể thì chuyển thành 1 bảng của dữ liệu
+        B2 Các thuộc tính không đối tượng của lớp thì chuyển thành thuộc tính của bảng dữ liệu tương ứng (theo kiểu chuẩn CSDL)
+        B3 Quan hệ số lượng giữa các lớp (chỉ lấy số lượng không lấy hình) thành quan hệ giữa các bảng
+            Quan hệ 1-1 thì ưu tiên gộp lại, trong 1 số trường hợp có thể giữ nguyên
+            Quan hệ 1-n giữ nguyên
+            Quan hệ n-n quay lại sửa biểu đồ từ pha phân tích
+        B4 Bổ sung khóa 
+            -PK : bảng nào có id thì xét làm khóa chính(PK)
+            -FK : phải xét quan hệ 1-n của bảng A-B, thì bảng B phải có FK tham chiếu đến PK của A
+        B5 Loại bỏ thuộc tính dư thừa 
+            Trùng lặp : hiếm
+            Dẫn xuất : (cộng trừ nhân chia, cơ học)
+         

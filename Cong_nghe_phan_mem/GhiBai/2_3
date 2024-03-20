@@ -1,0 +1,63 @@
+Requirement
+        by UML 
+            - General usecase
+            - Detail usecase
+        --------------------------
+        |                        |
+        |                        |
+        |                        |
+        |                        |           
+        |       đăng nhập ------------------ (Nhân viên lễ tân (actor)) ------(checkin)---------(Khách hàng)
+        |                        |
+        |                        |
+        --------------------------
+        Actor - là người yêu cầu để thực hiện hành động với hệ thống, tác động vào chức năng ấy thì chức năng ấy xảy ra
+            VD nhân viên lễ tân là actor(chính, trực tiếp), khách hàng cũng là actor(phụ, gián tiếp)
+            TH hệ thống có nhiều actor, hoặc là các actor k có quan hệ gì, hoặc là có quan hệ kế thừa "A<|----B"
+            Actor A là actor trừu tượng của actor B, Actor B kế thừa từ actor A
+            VD    nhân viên quản lý -------|> 
+                  nhân viên bán hàng ------|> Nhân viên khách sạn (trừu tượng)
+                  nhân viên lễ tân---------|>
+        Usecase là có sự tương tác với người dùng, VD như Hệ thống quản lí đặt phòng khách sạn 
+        có chức năng đăng nhập do nhân viên sử dụng
+            VD Kế thừa (genelization)     (A) <|----- (B) 
+            VD Nhân viên quản lý ----------- (tìm thông tin khách hàng) <|------- (tìm theo SDT)
+                                                                   ^--------------(tìm theo tên)
+            VD Chứa (include)          (A)------<<include>>------->(B)
+             Chức năng A chức năng B, chức năng B bị chứa trong chức năng A
+             Xảy ra khi quan hệ rất chặt, không hoàn thành B thì không hoàn thành được A
+             Nhân viên BH ------(Đặt phòng)--------- Khách hàng
+                                    |
+                        (nét đứt)   | include
+                                    |
+                                    v
+                                (Tìm phòng trống)
+            VD Mở rộng(extend)        (A)<------<<extend>>------(B)
+             Chức năng A mở rộng ra chức năng B, chức năng B có thể thực hiện mở rộng từ chức năng A
+             Quan hệ này khá yếu, khi làm việc A có thể nhảy sang việc B, hoàn thành việc B không ảnh hưởng tới việc hoàn thành A
+             VD Độc giả ----------(Xem trang chủ)
+                                        ^
+                                        |
+                        (nét đứt)       |  extend
+                                        |
+                                (Xem chi tiết một tin)
+        - Usecase toàn hệ thống (1 biểu đồ là đủ, cả nhóm làm chung)
+            Input : mô tả ngôn ngữ tự nhiên từ phần trước, ở phần số 2, ai có thể vào hệ thống ?
+                B1 : Xây dựng actor
+                    1.1 mỗi người dùng đề xuất thành một actor
+                    1.2 đề xuất actor trừu tượng (chỉ khi nếu cần)
+                B2 : Xây dựng usecase
+                    2.1 mỗi chức năng chính của user đề xuất thành chức năng của actor tương ứng
+                    2.2 đề xuất usecase trừu tượng nếu có các usecase tương tự nhau
+                    2.3 mô tả usecase 
+                        Cho phép ai - làm cái gì ?
+        - Detail usecase(phần riêng trong pha phân tích)
+            Input : mô tả bằng ngôn ngữ tự nhiên từ phần trước, ở phần số 3
+                B1 : Copy các phầ liên quan modul từ usecase tổng quan
+                B2 : Mỗi GD chính có tương tác với người dùng
+                B3 : Xét quan hệ các usecase con với usecase chính
+                B4 : Mô tả các usecase con
+            Nguyên tắc đặt tên các usecase : sử dụng động từ cho các actor chính, không sử dụng động từ chỉ hành động của hệ thống hoặc 
+            actor phụ
+            
+                                                                                    

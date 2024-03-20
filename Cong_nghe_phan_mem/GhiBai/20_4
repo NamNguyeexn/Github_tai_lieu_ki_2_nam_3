@@ -1,0 +1,84 @@
+Test case:
+    Boundary testing strategy : (Test biên)
+    DB testing 
+        - Thêm vào bảng (insert)
+        1 bảng dữ liệu làm 3 trường hợp sau:
+            + TH1 (chuẩn) : thêm 1 đối tượng chưa tồn tại trong bảng
+            + TH2 (ngoại lệ) : thêm 1 đối tượng đã tồn tại trong bảng
+            + TH3 (quốc tế) : thêm liên tục 2 lần 1 đối tượng chưa tồn tại trong bảng
+        - Cập nhật bảng (update)
+            + TH1 (chuẩn) : sửa 1 đối tượng đã tồn tại trong bảng
+            + TH2 (ngoại lệ) : sửa 1 đối tượng chưa tồn tại trong bảng 
+            + TH3 (qte) : sửa liên tục 2 lần 1 đối tượng đã tồn tại trong bảng
+        - Xóa bảng (delete)
+            + TH1 (chuẩn) : xóa 1 đối tượng đã tồn tại trong bảng
+            + TH2 (ngoại lệ) : xóa 1 đối tượng chưa tồn tại trong bảng 
+            + TH3 (qte) : xóa liên tiếp 2 lần 1 đối tượng đã tồn tại trong bảng
+        - Tìm kiếm (select)
+            + TH1 (chuẩn) : tìm kiếm 1 đối tượng đã tồn tại trong bảng
+            + TH2 (ngoại lệ) : tìm 1 đối tượng chưa tồn tại trong bảng
+        Trong trường hợp có nhiều bảng 
+            + TH1 thêm 1 B chưa tồn tại, A tồn tại, C tồn tại
+            + TH2 thêm 1 B đã tồn tại, A tồn tại, C tồn tại
+            + TH3 thêm 1 B chưa tồn tại, A tồn tại, C chưa tồn tại
+            + TH4 thêm 1 B chưa tồn tại, A chưa tồn tại, C tồn tại
+            + TH5 thêm 1 B chưa tồn tại, A chưa tồn tại, C chưa tồn tại
+            + TH6 thêm 2 lần liên tục B chưa tồn tại, A tồn tại, C tồn tại
+        Xét tìm kiếm (tìm gần đúng)
+            + TH có kết quả : từ khóa đúng bằng mẫu
+                              từ khóa nằm ở đoạn đầu mẫu
+                              từ khóa nằm ở cuối mẫu
+                              từ khóa nằm ở giữa mẫu 
+            + TH không có kết quả : không chứa 
+                                    chứa 1 phần
+            VD : tìm phòng trống
+                input sd -> ed 
+                CSDL ci -> co
+                + có phòng : co < sd
+                             ed < ci
+                + không có phòng : ci < sd < ed < co
+                                   sd < ci < co < ed
+                                   ci < sd < co < ed
+                                   sd < ci < ed < co
+    Test plan 
+        tạo bảng 3 cột 
+        thứ tự | module | test case
+        1   | Booking | Thêm 1 Booking chưa tồn tại, Room tồn tại, Client tồn tại
+            |         |------------------------------------------------------------------
+            |         | Thêm 1 booking chưa tồn tại, Room tồn tại, Client chưa tồn tại
+            |         |------------------------------------------------------------------
+            |         | Thêm 1 booking chưa tồn tại, Room chưa tồn tại :
+            |         |     - ci < sd < ed < co
+            |         |     - sd < ci < co < ed
+            |         |     - ci < sd < co < ed
+            |         |     - sd < ci < ed < co
+            |         |----------------------------------------------------------------------
+            |         | Thêm liên tục 2 lần 1 Booking chưa tồn tại, Client chưa tồn tại, Room tồn tại
+        - CSDL trước khi test
+        tblHotel : 
+        id | name | address | stars | des
+        1 | Multiple | NgoQuyen | 5 |
+        tblRoom :
+        id | idHotel | name | type | price | des
+        1  | 101     | single | gv | 500  |
+        2  | 102     | double | gv | 1000 |
+        3  | 103     | double | gv | 1000 |
+        4  | 104     | double | gv | 1000 |
+        tblUser :
+        id | fullname | username | password | role
+        1  | abc      | abc      | abc      | seller
+        tblClient :
+        id | name | address | email | tel | note
+        1  | A    | HN      | a@    | 123 |
+        2  | An   | SG      | an@   | 456 |
+        3  | Binh | DN      | binh@ | 789 |
+        tblBooking :
+        id | idHotel | idClient | checkin |
+        1  | 1       | 1        | 28/4    |
+        2  | 1       | 2        | 2/5     |
+        3  | 1       | 3        | 7/5     |
+        tblBookedRoom
+        id | idBooking | idRoom | checkin | checkout |
+        
+        - bảng
+        - CSDL sau khi test

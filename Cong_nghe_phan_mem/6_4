@@ -1,0 +1,62 @@
+Design
+    Tk Biểu đồ tuần tự
+        vd : booking
+            1. KH gọi điện gặp nhân viên bán hàng yêu cầu đặt phòng
+            2. NV click vào booking trên sellerHomeFRM
+            3. lớp sellerHomeFrm gọi hàm actionperforme()
+            4. hàm actionperform() gọi lớp searchFreeRoomFrm
+            5. lớp searchFreeRoomFrm gọi hàm khởi tạo
+            6. hàm searchFreeRoomFrm hiển thị giao diện cho nhân viên
+            7. NV hỏi KH ngày checkin/checkout
+            8. KH trả lời NV
+            9. NV nhập checkin/chcekout và chọn tìm trên giao diện searchFreeRoomFrm
+            10. lớp SearchFreeRoomFrm gọi hàm actionPerform()
+            11. hàm actionPerform() gọi sang lớp RoomDAO
+            12. lớp RoomDAO gọi hàm searchFreeRoom()
+            13. hàm searchFreeRoom() gọi sang lớp Room
+            14. lớp Room tạo đối tượng và đóng gói đối tượng Room 
+            15. lớp Room trả đối tượng về cho hàm searchFreeRoom
+            16. hàm searchFreeRoom trả kết quả về cho hàm actionPerform()
+            17. hàm actionPerform() hiển thị kết quả cho NV
+            18. NV báo kết quả và yêu cầu KH chọn phòng
+            19. KH chọn 1 số phòng
+            20. NV chọn các phòng tương ứng và click next
+            21. lớp searchFreeRoom gọi hàm actionPerform() 
+            22. hàm actionPerform() gọi lớp booking
+            23. lớp booking khởi tạo và đóng gói đối tượng
+            24. lớp booking trả đối tượng về cho hàm actionPerform()
+            25. hàm actionPerform() gọi sang lớp searchClientFrm 
+            26. lớp searchClientFrm thực hiện hàm khởi tạo 
+            27. hàm searchClientFrm() hiển thị cho nhân viên 
+            28. NV hỏi khách hàng thông tin cá nhân
+            29. KH cung cấp thông tin cho nhân viên
+            30. NV nhập tên và click tìm trên giao diện searchClientFrm
+            31. lớp searchClientFrm gọi hàm actionPerform()
+            32. hàm actionPerform() gọi lớp ClientDAO
+            33. lớp clientDAO thực hiện hàm searchByName()
+            34. hàm searchByName() gọi sang lớp client
+            35. lớp Client khởi tạo và đóng gói đối tượng
+            36. lớp Client trả đối tượng về cho hàm searchByName()
+            37. hàm SearchByName() trả kết quả về cho hàm actionPerform()
+            38. hàm actionPerform() hiển thị kết quả cho nhân viên 
+            39. NV click vào dòng của KH tương ứng
+            40. lớp searchClientFrm gọi actionPerform()
+            41. hàm actionPerform() gọi sang lớp booking 
+            42. lớp booking thực hiện hàm setClient() cho đối tượng booking
+            43. lớp booking trả đối tượng về cho hàm actionPerform()
+            44. hàm acitonPerform() gọi sang lớp confirmFrm
+            45. lớp confirmFrm gọi hàm khởi tạo 
+            46. hàm confirmFrm() hiển thị cho nhân viên 
+            47. NV xác nhận lại thông tin cho KH và yêu cầu KH xác nhận
+            48. KH xác nhận và đồng ý
+            49. NV click vào nút xác nhận trên giao diện confirmFrm
+            50. lớp confirmFrm gọi hàm actionPerform()
+            51. hàm actionPerform() gọi sang lớp bookingDAO
+            52. lớp bookingDAO thực hiện hàm addBooking()
+            53. hàm addBooking() trả kết quả về cho actionPerform()
+            54. hàm actionPerform() hiển thị thông báo thành công
+            55. NV click ok của thông báo
+            56. hàm actionPerform() gọi lại lớp sellerHomeFrm
+            57. lớp sellerHomeFrm hiển thị lại 
+            58. hàm sellerHomeFrm() hiển thị lại giao diện cho NV
+            59. NV thông báo thành công với KH
