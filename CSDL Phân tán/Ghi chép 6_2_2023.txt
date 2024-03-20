@@ -1,0 +1,1 @@
+Hệ phân tán là một tập các thành phần tự trị 

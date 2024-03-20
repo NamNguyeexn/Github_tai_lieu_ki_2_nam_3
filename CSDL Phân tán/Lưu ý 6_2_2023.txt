@@ -1,0 +1,3 @@
+SQL server 2019 không cài bản express(basic)
+cài theo các bản chuyên nghiệp 
+mk chung cho các file pdf : hapt27
